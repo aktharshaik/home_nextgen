@@ -22,7 +22,7 @@ public class UpdaterService extends Service {
 
     private ServerSocket serverSocket;
     public static final int PORT = 9999;
-
+    private MessageListener messageListener;
 
     @Override
     public void onCreate() {
@@ -30,6 +30,8 @@ public class UpdaterService extends Service {
         Log.d(TAG, "On Create");
         updater = new Updater();
         updater.start();
+        messageListener = new MessageListener();
+
     }
 
     @Override
