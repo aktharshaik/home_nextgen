@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Home>
+	<Bedroom>
+		<Light>on</Light>
+		<Fan speed="0">on</Fan>
+	</Bedroom>
+	<Kitchen>
+		<Light>off</Light>
+		<Light>on</Light>
+	</Kitchen>
+	<Hall>
+		<Light>off</Light>
+		<Fan speed="3">off</Fan>
+	</Hall>
+</Home>
