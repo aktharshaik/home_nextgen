@@ -26,7 +26,7 @@
             android:name=".UpdaterService"
             >
         </service>
-        <receiver android:name=".MessageListener">
+        <receiver android:name="messaging.MessageListener">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
