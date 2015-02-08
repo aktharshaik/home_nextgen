@@ -1,0 +1,7 @@
+1. Gdiff
+
+2. Gstatus  —> Use ‘-‘ to stage the changes
+
+3. Gcommit
+
+4. Gpush
