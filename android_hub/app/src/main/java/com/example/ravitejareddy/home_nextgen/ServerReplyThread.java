@@ -16,7 +16,7 @@ import java.net.SocketException;
  */
 public class ServerReplyThread extends Thread {
     private Socket hostThreadSocket;
-    public static final String TAG = ServerReplyThread.class.getSimpleName();
+    public static final String TAG = "HOME_NXTGEN:" + ServerReplyThread.class.getSimpleName();
     int cnt;
     String message = "";
 

@@ -11,15 +11,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import java.net.ServerSocket;
 
 
-public class MainActivity extends Activity implements View.OnClickListener{
+public class MainActivity extends Activity{
 
-    TextView textView;
-    Button startButton, stopButton;
-
+    private static final String TAG = "HOME_NXTGEN:" + MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +26,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_main);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-        textView = (TextView) findViewById(R.id.text_view);
-        startButton = (Button)findViewById(R.id.itemServiceStart);
-        stopButton = (Button)findViewById(R.id.itemServiceStop);
-        startButton.setOnClickListener(this);
-        stopButton.setOnClickListener(this);
         //Debug.startMethodTracing();
     }
 
@@ -65,18 +58,28 @@ public class MainActivity extends Activity implements View.OnClickListener{
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.itemServiceStart:
-                textView.setText("START SERVICE");
-                Log.d("RAVI", "TEST");
-                startService(new Intent(this, UpdaterService.class));
-                break;
-            case R.id.itemServiceStop:
-                textView.setText("STOP SERVICE");
-                stopService(new Intent(this, UpdaterService.class));
-                break;
+    //Hard coded in the widget
+    public void onToggleClicked(View view) {
+        // Is the toggle on?
+        Log.d(TAG, "START SERVICE");
+        boolean on = ((ToggleButton) view).isChecked();
+
+        if (on) {
+            // Enable vibrate
+            Log.d(TAG, "START SERVICE");
+            startService(new Intent(this, UpdaterService.class));
+        } else {
+            // Disable vibrate
+            Log.d(TAG, "STOP SERVICE");
+            stopService(new Intent(this, UpdaterService.class));
         }
     }
 }
+
+/*
+
+Main Activity Starts and stops a service
+
+
+
+ */

@@ -16,7 +16,7 @@ import messaging.MessageListener;
  * Created by ravitejareddy on 15/11/14.
  */
 public class UpdaterService extends Service {
-    private static final String TAG = UpdaterService.class.getSimpleName();
+    private static final String TAG = "HOME_NXTGEN:" + UpdaterService.class.getSimpleName();
     private Updater updater;
     private boolean isRunning = false;
 
@@ -31,13 +31,14 @@ public class UpdaterService extends Service {
         updater = new Updater();
         updater.start();
         messageListener = new MessageListener();
-
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "On Destroy");
+        //safe way to stop a thread
+        isRunning = false;
         if (serverSocket != null) {
             try {
                 serverSocket.close();
@@ -78,7 +79,7 @@ public class UpdaterService extends Service {
                 Log.d(TAG, "FAILED TO CREATE SERVER SOCKET");
             }
 
-            while (true){
+            while (isRunning){
                 try {
                     Log.d(TAG, "LISTENING");
                     socket = serverSocket.accept();
