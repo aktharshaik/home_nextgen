@@ -13,6 +13,7 @@ import java.net.SocketException;
 
 /**
  * Created by ravitejareddy on 15/11/14.
+ * Thread for handling the accepted connections.
  */
 public class ServerReplyThread extends Thread {
     private Socket hostThreadSocket;

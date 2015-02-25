@@ -78,8 +78,11 @@ public class MainActivity extends Activity{
 
 /*
 
-Main Activity Starts and stops a service
+    1.Main Activity Starts and stops a background service (Updater Service)
+    2.Updater service starts a thread which keeps accepting new connections and creates a new
+      thread (ServerReplyThread) for handling each connection accepted
 
-
+    3.These threads(ServerReplyThreads) will handle messages(JSON??) from the client and calls
+      appropriate objects after decoding the message.
 
  */

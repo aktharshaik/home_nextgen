@@ -37,7 +37,9 @@ public class UpdaterService extends Service {
     public void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "On Destroy");
-        //safe way to stop a thread
+        /* safe way to stop a thread. If not destroyed, thread keeps running even if service
+           is stopped. Leads to a new Updater thread(which listens for connections) every time you
+           start the service That should not happen */
         isRunning = false;
         if (serverSocket != null) {
             try {
@@ -54,7 +56,7 @@ public class UpdaterService extends Service {
         return null;
     }
 
-
+    /* Listens for connections, accepts them, creates a new thread for handling them */
     class Updater extends Thread{
         static final long DELAY = 10000;
 
